@@ -1,4 +1,4 @@
 {
   "name": "Java_jdk_internal_misc_ScopedMemoryAccess_closeScope0",
-  "parameterTypes": ["jdk.internal.misc.ScopedMemoryAccess$Scope", "java.lang.Object"]
+  "methods":[{"name":"scope","parameterTypes":["java.lang.Object"] }]
 }
