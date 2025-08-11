@@ -2,5 +2,10 @@
   {
     "name": "Java_jdk_internal_misc_ScopedMemoryAccess_closeScope0",
     "methods":[{"name":"scope","parameterTypes":["java.lang.Object"] }]
+  },
+  {
+    "name": "com.oracle.svm.core.graal.jdk.SubstrateObjectCloneSnippets",
+    "methods": [{"name": "doClone", "parameterTypes": [] }]
   }
+
 ]

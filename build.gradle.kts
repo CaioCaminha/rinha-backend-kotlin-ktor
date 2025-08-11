@@ -20,6 +20,7 @@ graalvmNative {
                 "-H:+ReportExceptionStackTraces",
                 "-H:+AddAllCharsets",  // Critical for JDK internals
                 "--initialize-at-run-time=jdk.internal.misc",  // Initialize at runtime
+                "--initialize-at-build-time=com.oracle.svm.core.graal.jdk.SubstrateObjectCloneSnippets",  // Initialize at runtime
                 "-H:ClassInitialization=:build_time",  // Default init policy
                 "--trace-class-initialization=jdk.internal.misc.ScopedMemoryAccess"
             ))
