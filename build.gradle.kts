@@ -15,10 +15,13 @@ application {
 graalvmNative {
     binaries {
         named("main") {
-            buildArgs.set(listOf(
-                "--no-fallback",
+            // Add these build arguments
+            buildArgs.addAll(listOf(
                 "-H:+ReportExceptionStackTraces",
-                "-march=native"
+                "-H:+AddAllCharsets",  // Critical for JDK internals
+                "--initialize-at-run-time=jdk.internal.misc",  // Initialize at runtime
+                "-H:ClassInitialization=:build_time",  // Default init policy
+                "--trace-class-initialization=jdk.internal.misc.ScopedMemoryAccess"
             ))
         }
     }
