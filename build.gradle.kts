@@ -19,7 +19,6 @@ graalvmNative {
             buildArgs.addAll(listOf(
                 "-H:+ReportExceptionStackTraces",
                 "-H:+AddAllCharsets",  // Critical for JDK internals
-                "-H:+TraceClassInitialization",
                 "-H:+ReportExceptionStackTraces",
                 "--report-unsupported-elements-at-runtime",
                 "--initialize-at-build-time=jdk.internal.misc.Unsafe",
