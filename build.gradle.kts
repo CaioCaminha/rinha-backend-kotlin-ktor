@@ -16,17 +16,13 @@ graalvmNative {
     binaries {
         named("main") {
             // Add these build arguments
-            buildArgs.addAll(listOf(
-                "-H:+ReportExceptionStackTraces",
-                "-H:+AddAllCharsets",  // Critical for JDK internals
-                "-H:+ReportExceptionStackTraces",
-                "--report-unsupported-elements-at-runtime",
-                "--initialize-at-build-time=jdk.internal.misc.Unsafe",
-                "--initialize-at-run-time=jdk.internal.misc",  // Initialize at runtime
-                "--initialize-at-build-time=com.oracle.svm.core.graal.jdk.SubstrateObjectCloneSnippets",  // Initialize at runtime
-                "-H:ClassInitialization=:build_time",  // Default init policy
-                "--trace-class-initialization=jdk.internal.misc.ScopedMemoryAccess"
-            ))
+            buildArgs.add("--initialize-at-build-time=jdk.internal.misc.VM")
+            buildArgs.add("-H:+InstallExitHandlers")
+            buildArgs.add("-H:+ReportUnsupportedElementsAtRuntime")
+            buildArgs.add("--initialize-at-build-time=io.ktor,kotlinx,kotlin")
+            buildArgs.add("--initialize-at-build-time=ch.qos.logback.core.status.InfoStatus")
+            buildArgs.add("--initialize-at-build-time=org.slf4j.helpers.Reporter")
+            buildArgs.add("--initialize-at-build-time=org.slf4j.LoggerFactory")
         }
     }
 }
@@ -40,8 +36,6 @@ dependencies {
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.serialization.kotlinx.json)
-//    implementation(libs.ktor.server.netty)
-    implementation(libs.logback.classic)
     implementation(libs.ktor.server.config.yaml)
 
     implementation(libs.ktor.client.core)
@@ -52,5 +46,4 @@ dependencies {
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
     implementation("io.ktor:ktor-server-cio:3.2.3")
-//    implementation("io.insert-koin:koin-logger-slf4j:4.0.0")
 }
