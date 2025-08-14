@@ -3,4 +3,13 @@ ktor:
         modules:
             - caio.caminha.application.ApplicationKt.module
     deployment:
-        port: 8080
+        port: "$PORT:8080"
+    development: true
+client:
+    payment-processor:
+        default:
+            url: "$PAYMENT_PROCESSOR_DEFAULT_URL:http://localhost:8001"
+        fallback:
+            url: "$PAYMENT_PROCESSOR_DEFAULT_URL:http://localhost:8002"
+    internal:
+        url: "$INTERNAL_BACKEND_URL:http://localhost:8081"

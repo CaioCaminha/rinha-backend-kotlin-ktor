@@ -9,7 +9,7 @@ group = "caio.caminha"
 version = "0.0.1"
 
 application {
-    mainClass = "io.ktor.server.netty.EngineMain"
+    mainClass = "io.ktor.server.cio.EngineMain"
 }
 
 graalvmNative {
@@ -31,14 +31,26 @@ graalvmNative {
     }
 }
 
+ktor {
+    development = true
+}
+
 dependencies {
     implementation(libs.ktor.server.di)
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.ktor.server.netty)
+//    implementation(libs.ktor.server.netty)
     implementation(libs.logback.classic)
     implementation(libs.ktor.server.config.yaml)
+
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation("io.ktor:ktor-client-logging:3.2.3")
+
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
+    implementation("io.ktor:ktor-server-cio:3.2.3")
+//    implementation("io.insert-koin:koin-logger-slf4j:4.0.0")
 }
